@@ -1,0 +1,174 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2021-09-08 11:44:45.487096",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "section_break_2",
+  "type",
+  "section_break_4",
+  "valid_from",
+  "valid_to",
+  "item_code",
+  "besar_dp",
+  "tenor",
+  "territory",
+  "discount",
+  "amount",
+  "percent",
+  "coa_expense",
+  "coa_receivable",
+  "coa_cash",
+  "coa_discount",
+  "jenis_biaya",
+  "daftar_biaya"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "RULE-.MM.-.YYYY.-.#####"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Type",
+   "options": "\nMain Dealer\nDealer\nManufacture\nLeasing\nBiaya Penjualan Kendaraan"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "valid_from",
+   "fieldtype": "Date",
+   "label": "Valid From"
+  },
+  {
+   "fieldname": "valid_to",
+   "fieldtype": "Date",
+   "label": "Valid To"
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item Code",
+   "options": "Item"
+  },
+  {
+   "depends_on": "eval:doc.type == \"Leasing\"",
+   "fieldname": "besar_dp",
+   "fieldtype": "Currency",
+   "label": "Besar DP"
+  },
+  {
+   "depends_on": "eval:doc.type == \"Leasing\"",
+   "fieldname": "tenor",
+   "fieldtype": "Int",
+   "label": "Tenor"
+  },
+  {
+   "depends_on": "eval:in_list([\"Main Dealer\", \"Dealer\", \"Manufacture\"], doc.type)",
+   "fieldname": "territory",
+   "fieldtype": "Link",
+   "label": "Territory",
+   "options": "Territory"
+  },
+  {
+   "depends_on": "eval:in_list([\"Main Dealer\", \"Dealer\", \"Manufacture\",\"Leasing\"], doc.type)",
+   "fieldname": "discount",
+   "fieldtype": "Select",
+   "label": "Discount",
+   "options": "\nAmount\nPercent"
+  },
+  {
+   "depends_on": "eval:doc.discount == \"Amount\"",
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "label": "Amount"
+  },
+  {
+   "depends_on": "eval:doc.discount == \"Percent\"",
+   "fieldname": "percent",
+   "fieldtype": "Percent",
+   "label": "Percent"
+  },
+  {
+   "depends_on": "eval:in_list([\"Main Dealer\", \"Manufacture\", \"Leasing\"], doc.type)",
+   "fieldname": "coa_expense",
+   "fieldtype": "Link",
+   "label": "COA Expense",
+   "options": "Account"
+  },
+  {
+   "depends_on": "eval:in_list([\"Main Dealer\", \"Manufacture\", \"Leasing\"], doc.type)",
+   "fieldname": "coa_receivable",
+   "fieldtype": "Link",
+   "label": "COA Receivable",
+   "options": "Account"
+  },
+  {
+   "depends_on": "eval:doc.type == \"Dealer\"",
+   "fieldname": "coa_cash",
+   "fieldtype": "Link",
+   "label": "COA Cash",
+   "options": "Account"
+  },
+  {
+   "depends_on": "eval:doc.type == \"Dealer\"",
+   "fieldname": "coa_discount",
+   "fieldtype": "Link",
+   "label": "COA Discount",
+   "options": "Account"
+  },
+  {
+   "depends_on": "eval:doc.type == \"Biaya Penjualan Kendaraan\"",
+   "fieldname": "jenis_biaya",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Jenis Biaya",
+   "options": "\nBPKB\nSTNK\nGift"
+  },
+  {
+   "depends_on": "eval:doc.type == \"Biaya Penjualan Kendaraan\"",
+   "fieldname": "daftar_biaya",
+   "fieldtype": "Table",
+   "label": "Daftar Biaya",
+   "options": "Daftar Biaya"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2021-09-08 13:26:48.849461",
+ "modified_by": "Administrator",
+ "module": "wongkar_selling",
+ "name": "Rule",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
